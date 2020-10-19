@@ -1,0 +1,50 @@
+plugins {
+	id 'com.novoda.bintray-release'
+	id 'com.android.library'
+}
+
+def version = "1.0.0.c"
+
+android {
+	compileSdkVersion 29
+
+	defaultConfig {
+		minSdkVersion 19
+		targetSdkVersion 29
+		versionCode 1
+		versionName version
+
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+	}
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+}
+
+dependencies {
+	implementation 'tw.com.future.game:FutureGameSDK:1.0.0'
+}
+
+publish {
+	userOrg = 'javacg'
+	groupId = 'tw.com.futuregame'
+	artifactId = 'FutureGameCore'
+	publishVersion = version
+	desc = 'FutureGameCore'
+}
+
+ext {
+	PUBLISH_GROUP_ID = 'tw.com.futuregame'
+	PUBLISH_ARTIFACT_ID = 'FutureGameCore'
+	PUBLISH_VERSION = version
+}
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
